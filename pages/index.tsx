@@ -1,20 +1,24 @@
 import Image from "next/image";
 import Pencil from "../public/pencil.png";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <main className="h-screen bg-slate-50 grid grid-cols-2 justify-items-center content-center mx-40">
+    <main className="h-screen bg-slate-50 grid grid-cols-2 justify-items-center content-center px-40">
       <div className="">
         <h1 className="text-7xl font-bold border-l-8 inline-block border-blue-900 px-3">
           Stream
         </h1>
         <p className="my-2 text-3xl">Manage your task responsibly.</p>
-        <p className=" opacity-60">
+        <p className="leading-7 opacity-60">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor
           deserunt exercitationem quaerat, facere quas possimus placeat a.
         </p>
-        <button className="text-xl rounded-xl mt-5 bg-blue-600 text-white px-4 py-2">
+        <button
+          onClick={() => router.push("#")}
+          className="text-xl rounded-xl mt-5 bg-blue-600 text-white px-4 py-2"
+        >
           Get Started.
         </button>
       </div>
