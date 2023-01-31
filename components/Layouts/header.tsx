@@ -1,9 +1,10 @@
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
-import { BiLogIn } from "react-icons/bi";
-import { BiHome } from "react-icons/bi";
+import { BiLogIn, BiLogOut, BiHome } from "react-icons/bi";
 import { TbNotebook } from "react-icons/tb";
 
 const Header = function () {
+  const { data: session, status } = useSession();
   return (
     <>
       <header className="border-b border-gray-200 px-32">
@@ -26,10 +27,17 @@ const Header = function () {
                 </Link>
               </li>
               <li className="mx-5 text-xl">
-                <Link href="#" className="nav-animation">
-                  <BiLogIn size={23} />
-                  Sign In
-                </Link>
+                {status === "authenticated" ? (
+                  <button onClick={() => signOut()} className="nav-animation">
+                    <BiLogOut size={23} />
+                    Sign Out
+                  </button>
+                ) : (
+                  <Link href="signin" className="nav-animation">
+                    <BiLogIn size={23} />
+                    Sign In
+                  </Link>
+                )}
               </li>
             </ul>
           </nav>
