@@ -14,19 +14,19 @@ const Header = function () {
           <nav>
             <ul className="flex">
               <li className="mx-5 text-xl">
-                <Link href="#" className="flex">
+                <Link href="#" className="nav-animation">
                   <BiHome size={23} />
                   Home
                 </Link>
               </li>
-              <li className="mx-5 text-xl">
-                <Link href="#" className="flex ">
+              <li className="mx-5 text-xl ">
+                <Link href="#" className="nav-animation">
                   <TbNotebook size={23} />
                   Todos
                 </Link>
               </li>
               <li className="mx-5 text-xl">
-                <Link href="#" className="flex ">
+                <Link href="#" className="nav-animation">
                   <BiLogIn size={23} />
                   Sign In
                 </Link>
