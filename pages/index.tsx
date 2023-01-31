@@ -16,7 +16,7 @@ export default function Home() {
           deserunt exercitationem quaerat, facere quas possimus placeat a.
         </p>
         <button
-          onClick={() => router.push("#")}
+          onClick={() => router.push("Todos")}
           className="text-xl rounded-xl mt-5 bg-blue-600 text-white px-4 py-2"
         >
           Get Started.
