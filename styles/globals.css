@@ -5,3 +5,15 @@
 .nav-animation {
   @apply flex opacity-60 hover:opacity-100 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 duration-300;
 }
+
+.task-pending {
+  @apply border-orange-500;
+}
+
+.task-active {
+  @apply border-yellow-300;
+}
+
+.task-completed {
+  @apply border-green-600;
+}
