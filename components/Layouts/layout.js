@@ -1,7 +1,7 @@
 import Header from "./header";
 import Footer from "./footer";
 
-const Layout = function ({ children }: any) {
+const Layout = function ({ children }) {
   return (
     <>
       <Header />

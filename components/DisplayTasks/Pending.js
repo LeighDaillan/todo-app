@@ -1,22 +1,34 @@
 import { BiMenuAltRight } from "react-icons/bi";
 
-const Completed = function () {
+const Pending = function () {
   const TEST = [
     {
       date: "July 12, 2001",
       description: "Things that need to do!",
-      status: "completed",
-      title: "Testing Completed",
+      status: "pending",
+      title: "Testing Pending",
+    },
+    {
+      date: "July 12, 2001",
+      description: "Things that need to do!",
+      status: "pending",
+      title: "Testing Pending V2",
+    },
+    {
+      date: "July 12, 2001",
+      description: "Things that need to do!",
+      status: "pending",
+      title: "Testing Pending V3",
     },
   ];
 
-  const viewTask = function (data: object) {
+  const viewTask = function (data) {
     return <section></section>;
   };
 
   return (
     <section className="m-5">
-      <h1 className="text-4xl ml-5 mb-3">Completed</h1>
+      <h1 className="text-4xl ml-5 mb-3">Pending</h1>
       {TEST.map((data) => {
         const status =
           data.status.charAt(0).toUpperCase() + data.status.slice(1);
@@ -49,4 +61,4 @@ const Completed = function () {
   );
 };
 
-export default Completed;
+export default Pending;

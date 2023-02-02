@@ -25,7 +25,7 @@ const SignIn = function () {
           </div>
         </div>
         <p className="max-w-sm mx-auto opacity-75 text-sm my-6">
-          By signing up, you agree to Stream's{" "}
+          By signing up, you agree to Stream's
           <span className="underline">Terms of Use</span> and &nbsp;
           <span className="underline">Privacy Policy.</span>
         </p>
@@ -36,7 +36,7 @@ const SignIn = function () {
 
 export default SignIn;
 
-export async function getServerSideProps({ req }: any) {
+export async function getServerSideProps({ req }) {
   const session = await getSession({ req });
   console.log(session);
 

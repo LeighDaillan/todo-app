@@ -10,7 +10,7 @@ const Active = function () {
     },
   ];
 
-  const viewTask = function (data: object) {
+  const viewTask = function (data) {
     return <section></section>;
   };
 

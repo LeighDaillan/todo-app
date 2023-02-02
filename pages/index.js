@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ViewTask from "../components/TaskFunction/View-Task";
 import Pencil from "../public/pencil.png";
 import { useRouter } from "next/router";
 

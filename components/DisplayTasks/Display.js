@@ -3,7 +3,7 @@ import Active from "./Active";
 import Pending from "./Pending";
 import Completed from "./Completed";
 
-const Display = function ({ status }: any) {
+const Display = function ({ status }) {
   if (status === "pending") {
     return <Pending></Pending>;
   } else if (status === "active") {
