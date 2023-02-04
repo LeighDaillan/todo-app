@@ -3,8 +3,8 @@ import { BsGoogle } from "react-icons/bs";
 
 const SignIn = function () {
   // Google Handler Function
-  const handleGoogleSignin = function () {
-    signIn("google", { callbackUrl: "http://localhost:3000" });
+  const handleGoogleSignin = async function () {
+    return signIn("google", { callbackUrl: "http://localhost:3000" });
   };
 
   return (
@@ -35,21 +35,3 @@ const SignIn = function () {
 };
 
 export default SignIn;
-
-export async function getServerSideProps({ req }) {
-  const session = await getSession({ req });
-  console.log(session);
-
-  if (session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { session },
-  };
-}

@@ -1,35 +1,28 @@
+import { TaskContext } from "../ContextProvider/TaskContextProvider";
+import { useContext, useState, useEffect } from "react";
+import ViewTask from "../TaskFunction/View-Task";
 import { BiMenuAltRight } from "react-icons/bi";
+import { collection, onSnapshot } from "firebase/firestore";
+import { database } from "../../firebaseConfig";
 
 const Pending = function () {
-  const TEST = [
-    {
-      date: "July 12, 2001",
-      description: "Things that need to do!",
-      status: "pending",
-      title: "Testing Pending",
-    },
-    {
-      date: "July 12, 2001",
-      description: "Things that need to do!",
-      status: "pending",
-      title: "Testing Pending V2",
-    },
-    {
-      date: "July 12, 2001",
-      description: "Things that need to do!",
-      status: "pending",
-      title: "Testing Pending V3",
-    },
-  ];
+  const { showTask, setShowTask, session, data, pendingTask } =
+    useContext(TaskContext);
+  const [taskData, setTaskData] = useState();
+
+  useEffect(() => {
+    if (session) pendingTask();
+  }, []);
 
   const viewTask = function (data) {
-    return <section></section>;
+    setShowTask(!showTask);
+    return setTaskData(data);
   };
 
   return (
     <section className="m-5">
       <h1 className="text-4xl ml-5 mb-3">Pending</h1>
-      {TEST.map((data) => {
+      {data.map((data) => {
         const status =
           data.status.charAt(0).toUpperCase() + data.status.slice(1);
         return (
@@ -57,6 +50,7 @@ const Pending = function () {
           </div>
         );
       })}
+      {showTask ? <ViewTask data={taskData} /> : false}
     </section>
   );
 };

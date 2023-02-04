@@ -1,48 +1,21 @@
 import ViewTask from "../TaskFunction/View-Task";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TaskContext } from "../ContextProvider/TaskContextProvider";
 import { BiMenuAltRight } from "react-icons/bi";
+import { collection, onSnapshot } from "firebase/firestore";
+import { database } from "../../firebaseConfig";
 
 const Tasks = function () {
-  const TEST = [
-    {
-      date: "July 12, 2001",
-      description: "Things that need to do!",
-      status: "pending",
-      title: "Testing Pending",
-    },
-    {
-      date: "July 12, 2001",
-      description: "Things that need to do!",
-      status: "pending",
-      title: "Testing Pending V2",
-    },
-    {
-      date: "July 12, 2001",
-      description: "Things that need to do!",
-      status: "pending",
-      title: "Testing Pending V3",
-    },
-    {
-      date: "July 12, 2001",
-      description: "Things that need to do!",
-      status: "active",
-      title: "Testing Active",
-    },
-    {
-      date: "July 12, 2001",
-      description: "Things that need to do!",
-      status: "completed",
-      title: "Testing Completed",
-    },
-  ];
-
-  const { show, setShow } = useContext(TaskContext);
-
+  const { showTask, setShowTask, tasks, data, session } =
+    useContext(TaskContext);
   const [taskData, setTaskData] = useState();
 
+  useEffect(() => {
+    if (session) tasks();
+  }, []);
+
   const viewTask = function (data) {
-    setShow(!show);
+    setShowTask(!showTask);
     return setTaskData(data);
   };
 
@@ -50,7 +23,7 @@ const Tasks = function () {
     <>
       <section className="m-5">
         <h1 className="text-4xl ml-5 mb-3">All</h1>
-        {TEST.map((data) => {
+        {data.map((data) => {
           const status =
             data.status.charAt(0).toUpperCase() + data.status.slice(1);
           return (
@@ -78,7 +51,7 @@ const Tasks = function () {
             </div>
           );
         })}
-        {show ? <ViewTask data={taskData} /> : false}
+        {showTask ? <ViewTask data={taskData} /> : false}
       </section>
     </>
   );
