@@ -29,9 +29,9 @@ const AddTask = function () {
     <>
       <div
         onClick={() => setShowAddTask(!showAddTask)}
-        className="bg-black opacity-80 inset-0 max-h-screen bg-coverbg-center z-80 absolute"
+        className="bg-black opacity-80 inset-0 max-h-screen bg-coverbg-center z-80 fixed"
       ></div>
-      <form className=" top-0 left-0 right-0 bg-slate-200 absolute z-90 h-auto rounded-lg p-5 gap-5 text-xl w-5/12 mx-auto mt-20 flex flex-col">
+      <form className=" top-0 left-0 right-0 bg-slate-200 fixed z-90 h-auto rounded-lg p-5 gap-3 text-xl w-5/12 mx-auto mt-20 flex flex-col">
         <h1 className="text-xl font-bold">Add Task</h1>
         <label>Title:</label>
         <input
@@ -72,7 +72,7 @@ const AddTask = function () {
           onClick={submitHandler}
           type="submit"
           value="Submit"
-          className="rounded-md py-2 bg-blue-600 text-white"
+          className="rounded-md py-2 cursor-pointer bg-blue-600 text-white"
         />
       </form>
     </>

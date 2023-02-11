@@ -1,6 +1,12 @@
 import { useState, createContext, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { collection, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { database } from "../../firebaseConfig";
 
 export const TaskContext = createContext();
@@ -10,60 +16,65 @@ const TaskProvider = function (props) {
   const [showAddTask, setShowAddTask] = useState(false);
   const [data, setData] = useState([]);
   const { data: session, status } = useSession();
+  const [taskCount, setTaskCount] = useState({
+    pending: 0,
+    active: 0,
+    completed: 0,
+  });
 
   const tasks = function () {
-    return onSnapshot(
-      collection(database, session?.user?.email),
-      (snapshot) => {
-        setData(
-          snapshot.docs.map((doc) => {
-            return { ...doc.data(), id: doc.id };
-          })
-        );
-      }
-    );
+    onSnapshot(collection(database, session?.user?.email), (snapshot) => {
+      setData(
+        snapshot.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        })
+      );
+    });
   };
 
-  const pendingTask = function () {
-    return onSnapshot(
-      collection(database, session?.user?.email),
-      (snapshot) => {
-        const data = snapshot.docs
-          .map((doc) => {
-            return { ...doc.data(), id: doc.id };
-          })
-          .filter((doc) => doc.status === "pending");
-        return setData(data);
-      }
-    );
+  const pendingTask = async function () {
+    const colRef = collection(database, session?.user?.email);
+
+    // Create a query against the collection.
+    const q = query(colRef, where("status", "==", "pending"));
+    const querySnapshot = await getDocs(q);
+    setData(() => {
+      let docs = [];
+      querySnapshot.forEach((doc) => {
+        return docs.push({ ...doc.data(), id: doc.id });
+      });
+      return docs;
+    });
   };
 
-  const activeTask = function () {
-    return onSnapshot(
-      collection(database, session?.user?.email),
-      (snapshot) => {
-        const data = snapshot.docs
-          .map((doc) => {
-            return { ...doc.data(), id: doc.id };
-          })
-          .filter((doc) => doc.status === "active");
-        return setData(data);
-      }
-    );
+  const activeTask = async function () {
+    const colRef = collection(database, session?.user?.email);
+
+    // Create a query against the collection.
+    const q = query(colRef, where("status", "==", "active"));
+    const querySnapshot = await getDocs(q);
+    setData(() => {
+      let docs = [];
+      querySnapshot.forEach((doc) => {
+        return docs.push({ ...doc.data(), id: doc.id });
+      });
+      return docs;
+    });
   };
 
-  const completedTask = function () {
-    return onSnapshot(
-      collection(database, session?.user?.email),
-      (snapshot) => {
-        const data = snapshot.docs
-          .map((doc) => {
-            return { ...doc.data(), id: doc.id };
-          })
-          .filter((doc) => doc.status === "completed");
-        return setData(data);
-      }
-    );
+  const completedTask = async function () {
+    const colRef = collection(database, session?.user?.email);
+
+    // Create a query against the collection.
+    const q = query(colRef, where("status", "==", "completed"));
+    const querySnapshot = await getDocs(q);
+    setData(() => {
+      let docs = [];
+      querySnapshot.forEach((doc) => {
+        return docs.push({ ...doc.data(), id: doc.id });
+      });
+      return docs;
+    });
   };
 
   return (
@@ -81,6 +92,8 @@ const TaskProvider = function (props) {
         pendingTask,
         activeTask,
         completedTask,
+        setTaskCount,
+        taskCount,
       }}
     >
       {props.children}

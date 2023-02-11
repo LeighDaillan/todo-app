@@ -7,7 +7,8 @@ import { IoPeopleCircleOutline } from "react-icons/io5";
 import { AiOutlinePlus } from "react-icons/ai";
 
 const Todos = function () {
-  const { showAddTask, setShowAddTask, session } = useContext(TaskContext);
+  const { showAddTask, setShowAddTask, session, taskCount } =
+    useContext(TaskContext);
   const [status, setStatus] = useState("");
   const addTask = function () {
     setShowAddTask(!showAddTask);
@@ -34,15 +35,15 @@ const Todos = function () {
 
           <div className="grid grid-cols-3 mt-10">
             <div>
-              <span className="font-bold">2</span>
+              <span className="font-bold">{taskCount.pending}</span>
               <h2>Pending</h2>
             </div>
             <div>
-              <span className="font-bold">1</span>
+              <span className="font-bold">{taskCount.active}</span>
               <h2>Active</h2>
             </div>
             <div>
-              <span className="font-bold">1</span>
+              <span className="font-bold">{taskCount.completed}</span>
               <h2>Completed</h2>
             </div>
           </div>
