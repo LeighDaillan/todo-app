@@ -9,7 +9,7 @@ export default function Home() {
     <main className="h-screen bg-slate-50 grid grid-cols-2 justify-items-center content-center px-40">
       <div className="">
         <h1 className="text-7xl font-bold border-l-8 inline-block border-blue-900 px-3">
-          Stream
+          Stream test edit
         </h1>
         <p className="my-2 text-3xl">Manage your task responsibly.</p>
         <p className="leading-7 opacity-60">
