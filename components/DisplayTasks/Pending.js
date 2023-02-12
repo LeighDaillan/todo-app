@@ -2,15 +2,29 @@ import { TaskContext } from "../ContextProvider/TaskContextProvider";
 import { useContext, useState, useEffect } from "react";
 import ViewTask from "../TaskFunction/View-Task";
 import { BiMenuAltRight } from "react-icons/bi";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { database } from "../../firebaseConfig";
 
 const Pending = function () {
-  const { showTask, setShowTask, session, data, pendingTask } =
-    useContext(TaskContext);
+  const { showTask, setShowTask, session } = useContext(TaskContext);
   const [taskData, setTaskData] = useState();
+  const [data, setData] = useState();
 
   useEffect(() => {
+    const pendingTask = async function () {
+      const colRef = collection(database, session?.user?.email);
+
+      // Create a query against the collection.
+      const q = query(colRef, where("status", "==", "pending"));
+      const querySnapshot = await getDocs(q);
+      setData(() => {
+        let docs = [];
+        querySnapshot.forEach((doc) => {
+          return docs.push({ ...doc.data(), id: doc.id });
+        });
+        return docs;
+      });
+    };
     if (session) pendingTask();
   }, []);
 
@@ -22,7 +36,7 @@ const Pending = function () {
   return (
     <section className="m-5">
       <h1 className="text-4xl ml-5 mb-3">Pending</h1>
-      {data.map((data) => {
+      {data?.map((data) => {
         const status =
           data.status.charAt(0).toUpperCase() + data.status.slice(1);
         return (

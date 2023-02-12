@@ -32,21 +32,6 @@ const Todos = function () {
           )}
           <h1 className="my-2 text-xl font-bold">{session?.user?.name}</h1>
           <p className="opacity-75 text-sm">{session?.user?.email}</p>
-
-          <div className="grid grid-cols-3 mt-10">
-            <div>
-              <span className="font-bold">{taskCount.pending}</span>
-              <h2>Pending</h2>
-            </div>
-            <div>
-              <span className="font-bold">{taskCount.active}</span>
-              <h2>Active</h2>
-            </div>
-            <div>
-              <span className="font-bold">{taskCount.completed}</span>
-              <h2>Completed</h2>
-            </div>
-          </div>
         </section>
 
         <div className="flex flex-col w-full">

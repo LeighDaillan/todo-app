@@ -6,14 +6,23 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { database } from "../../firebaseConfig";
 
 const Tasks = function () {
-  const { showTask, setShowTask, tasks, data, session } =
+  const { showTask, setShowTask, session, setTaskCount, taskCount } =
     useContext(TaskContext);
   const [taskData, setTaskData] = useState();
+  const [data, setData] = useState();
 
   useEffect(() => {
+    const tasks = function () {
+      onSnapshot(collection(database, session?.user?.email), (snapshot) => {
+        setData(
+          snapshot.docs.map((doc) => {
+            return { ...doc.data(), id: doc.id };
+          })
+        );
+      });
+    };
     if (session) tasks();
   }, []);
-
   const viewTask = function (data) {
     setShowTask(!showTask);
     return setTaskData(data);
@@ -23,7 +32,7 @@ const Tasks = function () {
     <>
       <section className="m-5">
         <h1 className="text-4xl ml-5 mb-3">All</h1>
-        {data.map((data) => {
+        {data?.map((data) => {
           const status =
             data.status.charAt(0).toUpperCase() + data.status.slice(1);
           return (
