@@ -4,7 +4,7 @@ import { BsGoogle } from "react-icons/bs";
 const SignIn = function () {
   // Google Handler Function
   const handleGoogleSignin = async function () {
-    return signIn("google", { callbackUrl: "http://localhost:3000" });
+    return signIn("google", { callbackUrl: process.env.NEXT_URL });
   };
 
   return (
