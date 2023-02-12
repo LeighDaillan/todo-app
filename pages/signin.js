@@ -35,3 +35,20 @@ const SignIn = function () {
 };
 
 export default SignIn;
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: process.env.NEXT_URL,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+}
