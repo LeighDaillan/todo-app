@@ -35,7 +35,7 @@ const Pending = function () {
 
   return (
     <section className="m-5">
-      <h1 className="text-4xl ml-5 mb-3">Pending</h1>
+      <h1 className="text-xl md:text-4xl font-bold ml-5 mb-3">Pending</h1>
       {data?.map((data) => {
         const status =
           data.status.charAt(0).toUpperCase() + data.status.slice(1);

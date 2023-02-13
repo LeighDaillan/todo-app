@@ -5,7 +5,6 @@ import Image from "next/image";
 import Display from "../../components/DisplayTasks/Display";
 import AddTask from "../../components/TaskFunction/Add-Task";
 import { IoPeopleCircleOutline } from "react-icons/io5";
-import { AiOutlinePlus } from "react-icons/ai";
 
 const Todos = function () {
   const { showAddTask, setShowAddTask, session, taskCount } =
@@ -44,10 +43,13 @@ const Todos = function () {
             {/* Todo Navigation */}
             <section className="px-5 border-b-2 pb-2">
               <header className="flex flex-col md:flex-row justify-between ">
-                <div className=" bg-blue-500 flex text-white rounded-md p-2  ">
-                  <button onClick={addTask}>Add Tasks</button>
-                  <AiOutlinePlus className="mt-1" size={23} />
-                </div>
+                <button
+                  className="bg-blue-500 text-white rounded-md my-2 px-2 py-2"
+                  onClick={addTask}
+                >
+                  Add Tasks +
+                </button>
+
                 <nav>
                   <ul className="grid grid-cols-2 gap-5 justify-center sm:flex sm:flex-row-reverse mt-5">
                     <li className="mx-5 text-md md:text-lg">
