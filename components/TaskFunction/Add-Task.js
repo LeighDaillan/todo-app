@@ -31,7 +31,7 @@ const AddTask = function () {
         onClick={() => setShowAddTask(!showAddTask)}
         className="bg-black opacity-80 inset-0 max-h-screen bg-coverbg-center z-80 fixed"
       ></div>
-      <form className=" top-0 left-0 right-0 bg-slate-200 fixed z-90 h-auto rounded-lg p-5 gap-3 text-xl w-5/12 mx-auto mt-20 flex flex-col">
+      <form className=" top-0 left-0 right-0 bg-slate-200 fixed z-90  rounded-lg p-5 gap-3 text-xl max-w-sm sm:max-w-md md:max-w-xl mx-auto mt-20 flex flex-col">
         <h1 className="text-xl font-bold">Add Task</h1>
         <label>Title:</label>
         <input

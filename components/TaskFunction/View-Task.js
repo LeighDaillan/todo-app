@@ -41,7 +41,7 @@ const ViewTask = function ({ data }) {
         onClick={() => setShowTask(!showTask)}
         className="bg-black fixed opacity-80 inset-0 max-h-full bg-coverbg-center z-80 "
       ></div>
-      <form className=" top-0 left-0 right-0 fixed bg-slate-200  z-90 h-auto rounded-lg p-5  gap-2 text-xl w-5/12 mx-auto mt-20 flex flex-col">
+      <form className=" top-0 left-0 right-0 fixed bg-slate-200  z-90 h-auto rounded-lg p-5  gap-2 text-xl max-w-sm sm:max-w-md md:max-w-xl mx-auto mt-20 flex flex-col">
         <label>Title:</label>
         <input
           value={title}

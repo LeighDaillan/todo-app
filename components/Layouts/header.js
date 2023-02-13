@@ -7,26 +7,26 @@ const Header = function () {
   const { data: session, status } = useSession();
   return (
     <>
-      <header className="border-b border-gray-200 px-32">
-        <div className="flex justify-between content-center py-5 px-5  drop-shadow-2xl">
-          <span className="text-2xl font-bold border-l-4 inline-block border-blue-900 px-2">
+      <header className="border-b border-gray-200 px-10 md:px-32">
+        <div className="flex flex-col md:flex-row justify-between content-center py-5 px-5 drop-shadow-2xl">
+          <span className="text-2xl text-center font-bold md:border-l-4 inline-block md:border-blue-900 px-2">
             Stream
           </span>
           <nav>
-            <ul className="flex">
-              <li className="mx-5 text-xl">
+            <ul className="flex justify-center sm:pt-5 md:pt-0">
+              <li className="mx-5 text-base md:text-xl">
                 <Link href="/" className="nav-animation">
                   <BiHome size={23} />
                   Home
                 </Link>
               </li>
-              <li className="mx-5 text-xl ">
+              <li className="mx-5 text-base md:text-xl ">
                 <Link href="Todos" className="nav-animation">
                   <TbNotebook size={23} />
                   Todos
                 </Link>
               </li>
-              <li className="mx-5 text-xl">
+              <li className="mx-5 text-base md:text-xl">
                 {status === "authenticated" ? (
                   <button onClick={() => signOut()} className="nav-animation">
                     <BiLogOut size={23} />
